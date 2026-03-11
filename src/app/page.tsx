@@ -6,6 +6,7 @@ import { MessageList } from '@/components/chat/message-list';
 import { ChatInput } from '@/components/chat/chat-input';
 import { useChatStore } from '@/lib/store/chat-store';
 import { MockProvider } from '@/lib/providers/mock-provider';
+import { FreeProvider } from '@/lib/providers/free-provider';
 
 export default function ChatPage() {
   const { messages, addMessage, updateLastMessage, activeProvider } = useChatStore();
@@ -29,9 +30,11 @@ export default function ChatPage() {
     setIsLoading(true);
     
     try {
-      // Setup provider based on active selection (Currently only Mock is implemented)
+      // Setup provider based on active selection
       let provider;
-      if (activeProvider === 'mock') {
+      if (activeProvider === 'free') {
+        provider = new FreeProvider();
+      } else if (activeProvider === 'mock') {
         provider = new MockProvider();
       } else {
         // Fallback or placeholder for real providers

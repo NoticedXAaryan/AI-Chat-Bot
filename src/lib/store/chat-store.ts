@@ -10,7 +10,7 @@ interface ChatState {
     anthropic?: string;
     gemini?: string;
   };
-  activeProvider: 'mock' | 'openai' | 'anthropic' | 'gemini';
+  activeProvider: 'free' | 'mock' | 'openai' | 'anthropic' | 'gemini';
   
   // Actions
   addMessage: (message: ChatMessage) => void;
@@ -25,7 +25,7 @@ export const useChatStore = create<ChatState>()(
     (set) => ({
       messages: [],
       apiKeys: {},
-      activeProvider: 'mock',
+      activeProvider: 'free',
 
       addMessage: (message) => set((state) => ({ 
         messages: [...state.messages, message] 
