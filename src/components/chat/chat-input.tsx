@@ -1,5 +1,6 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { Send, Loader2 } from 'lucide-react';
+import { CodeOptimizerBlock } from './code-optimizer-block';
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -25,6 +26,11 @@ export function ChatInput({ onSend, isLoading = false }: ChatInputProps) {
 
   return (
     <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-950 via-gray-950 to-transparent pt-10">
+      <div className="max-w-3xl mx-auto w-full mb-4">
+        <CodeOptimizerBlock onOptimize={(prompt) => {
+          onSend(prompt);
+        }} />
+      </div>
       <div className="max-w-3xl mx-auto relative flex items-end">
         <textarea
           value={input}
