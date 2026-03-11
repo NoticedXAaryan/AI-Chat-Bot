@@ -23,10 +23,10 @@ export function CodeOptimizerBlock({ onOptimize }: CodeOptimizerBlockProps) {
     return (
       <button 
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-purple-400 rounded-xl transition-colors text-sm font-medium border border-gray-700"
+        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-900/40 to-blue-900/40 hover:from-purple-800/60 hover:to-blue-800/60 text-purple-300 rounded-xl transition-all text-sm font-semibold border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]"
       >
         <Code size={16} />
-        Smart Code
+        Optimize Code
       </button>
     );
   }
@@ -40,9 +40,9 @@ export function CodeOptimizerBlock({ onOptimize }: CodeOptimizerBlockProps) {
         </div>
         <button 
           onClick={() => setIsOpen(false)}
-          className="text-gray-500 hover:text-gray-300 transition-colors text-sm"
+          className="text-gray-400 hover:text-white transition-colors text-sm bg-gray-900 px-3 py-1.5 rounded-lg border border-gray-700"
         >
-          Close
+          Cancel
         </button>
       </div>
       <div className="p-3">
@@ -59,7 +59,7 @@ export function CodeOptimizerBlock({ onOptimize }: CodeOptimizerBlockProps) {
             className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-500 disabled:bg-gray-800 disabled:text-gray-500 text-white rounded-lg transition-colors text-sm font-medium shadow-sm"
           >
             <Wand2 size={16} />
-            Refactor & Fix
+            Refactor & Fix Code
           </button>
         </div>
       </div>

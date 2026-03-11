@@ -21,7 +21,16 @@ export function SettingsDialog() {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-gray-900 border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          <h2 className="text-lg font-semibold text-gray-100">Settings</h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-semibold text-gray-100">Settings</h2>
+            <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase ${
+              activeProvider === 'free' || activeProvider === 'mock' 
+                ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
+                : 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+            }`}>
+              {activeProvider === 'free' || activeProvider === 'mock' ? 'Free Tier' : 'Premium API'}
+            </span>
+          </div>
           <button 
             onClick={() => setIsOpen(false)}
             className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-gray-800"
