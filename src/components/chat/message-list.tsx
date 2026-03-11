@@ -1,6 +1,9 @@
 import { ChatMessage } from '@/lib/providers/base-provider';
 import { User, Bot, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface MessageListProps {
   messages: ChatMessage[];
@@ -23,12 +26,35 @@ export function MessageList({ messages }: MessageListProps) {
                   <Bot size={18} className="text-purple-300" />
                 </div>
               )}
-              <div className={`px-4 py-3 rounded-2xl max-w-[85%] prose prose-invert ${
+              <div className={`px-4 py-3 rounded-2xl max-w-[85%] prose prose-invert shadow-lg backdrop-blur-md bg-opacity-80 ${
                 msg.role === 'user' 
-                  ? 'bg-blue-600 text-white rounded-tr-none' 
-                  : 'bg-gray-800 text-gray-100 rounded-tl-none border border-gray-700'
+                  ? 'bg-blue-600/90 text-white rounded-tr-none border border-blue-500/30' 
+                  : 'bg-gray-800/80 text-gray-100 rounded-tl-none border border-gray-700/50'
               }`}>
-                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    code({node, inline, className, children, ...props}: any) {
+                      const match = /language-(\w+)/.exec(className || '');
+                      return !inline && match ? (
+                        <SyntaxHighlighter
+                          {...props}
+                          children={String(children).replace(/\n$/, '')}
+                          style={vscDarkPlus}
+                          language={match[1]}
+                          PreTag="div"
+                          className="rounded-lg !my-2"
+                        />
+                      ) : (
+                        <code {...props} className={className + " bg-gray-900/50 px-1 py-0.5 rounded text-sm text-purple-300"}>
+                          {children}
+                        </code>
+                      )
+                    }
+                  }}
+                >
+                  {msg.content}
+                </ReactMarkdown>
               </div>
               {msg.role === 'user' && (
                 <div className="w-8 h-8 rounded bg-blue-900 flex items-center justify-center flex-shrink-0">
