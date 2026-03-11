@@ -1,0 +1,16 @@
+﻿  console.error
+    Error in FreeProvider streamChat: ReferenceError: TextDecoder is not defined
+        at FreeProvider.streamChat (C:\Users\notic\OneDrive\Desktop\AI-Chat-Bot\src\lib\providers\free-provider.ts:26:23)
+        at Object.chunk (C:\Users\notic\OneDrive\Desktop\AI-Chat-Bot\src\__tests__\providers\free-provider.test.ts:43:22)
+
+    [0m [90m 34 |[39m       }
+     [90m 35 |[39m     } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 36 |[39m       console[33m.[39merror([32m'Error in FreeProvider streamChat:'[39m[33m,[39m error)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 37 |[39m       [36myield[39m [32m'\n\n**Error:** An issue occurred while communicating with the free AI service. Please try again or configure a premium API key.'[39m[33m;[39m
+     [90m 38 |[39m     }
+     [90m 39 |[39m   }[0m
+
+      at FreeProvider.error [as streamChat] (src/lib/providers/free-provider.ts:36:15)
+      at Object.chunk (src/__tests__/providers/free-provider.test.ts:43:22)
+
